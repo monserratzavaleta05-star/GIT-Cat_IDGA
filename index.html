@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gato Multiverso 2.0</title>
+    <style>
+        /* =========================================
+           CSS GLOBAL (ESTILO DE LA ESCENA)
+           ========================================= */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* 1. CAMBIO INOCENTE: Color de Fondo */
+            background-color: #e0f7fa; /* Celeste claro */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.5s ease;
+        }
+
+        .contenedor {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p.version {
+            color: #777;
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        /* =========================================
+           EL GATO (ESTRUCTURA Y COLORES)
+           ========================================= */
+        
+        /* 2. EL CONFLICTO MAESTRO: Color del Cuerpo y Orejas */
+        :root {
+            --color-gato: #000;      /* Gris Base */
+            --color-orejas: #000;    /* Mismo que el cuerpo */
+            --color-nariz: #ff8a80;     /* Rosa suave */
+            --color-ojos: #2ecc71;      /* Oscuro */
+            --color-pupilas: #ffffff;   /* Blanco */
+        }
+
+        .gato-completo {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* CUERPO PRINCIPAL */
+        .cuerpo {
+            position: relative;
+            width: 180px;
+            height: 200px;
+            background-color: var(--color-gato);
+            border-radius: 90px 90px 40px 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+
+        /* OREJAS (Dibujadas con bordes) */
+        .cuerpo::before, .cuerpo::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid var(--color-orejas);
+            z-index: -1;
+        }
+        .cuerpo::before { left: 15px; transform: rotate(-10deg); }
+        .cuerpo::after { right: 15px; transform: rotate(10deg); }
+
+        /* CARA (Contenedor invisible para ojos y nariz) */
+        .cara {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            z-index: 2;
+        }
+
+        /* OJOS */
+        .cara::before, .cara::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--color-ojos);
+            border-radius: 50%;
+        }
+        .cara::before { left: 45px; } /* Ojo izquierdo */
+        .cara::after { right: 45px; } /* Ojo derecho */
+
+        /* PUPILAS (Brillo de los ojos) */
+        /* 3. CAMBIO INTERMEDIO: Color de las Pupilas/Brillo */
+        .cara::before {
+            background-image: radial-gradient(circle at 35% 35%, var(--color-pupilas) 20%, var(--color-ojos) 21%);
+        }
+        .cara::after {
+            background-image: radial-gradient(circle at 35% 35%, var(--color-pupilas) 20%, var(--color-ojos) 21%);
+        }
+
+        /* NARIZ */
+        /* 4. CAMBIO INTERMEDIO: Color de la Nariz */
+        .nariz {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 12px;
+            background-color: var(--color-nariz);
+            border-radius: 50%;
+        }
+
+        /* BIGOTES (Usando box-shadow para líneas múltiples) */
+        .nariz::before, .nariz::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            width: 50px;
+            height: 2px;
+            background-color: #546e7a; /* Color bigotes */
+        }
+        .nariz::before {
+            right: 15px;
+            transform: rotate(5deg);
+            box-shadow: 0 8px 0 #546e7a;
+        }
+        .nariz::after {
+            left: 15px;
+            transform: rotate(-5deg);
+            box-shadow: 0 8px 0 #546e7a;
+        }
+
+        /* PATITAS */
+        .patitas {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 30px;
+            z-index: 2;
+        }
+        .patitas::before, .patitas::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 30px;
+            background-color: var(--color-gato);
+            border-radius: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        .patitas::before { left: 0; }
+        .patitas::after { right: 0; }
+
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>El Gato del Multiverso</h1>
+        <p class="version">MIAU!!!!</p>
+        
+        <div class="gato-completo">
+            <div class="cuerpo">
+                <div class="cara">
+                    <div class="nariz"></div>
+                </div>
+            </div>
+            <div class="patitas"></div>
+        </div>
+        </div>
+</body>
+</html>
